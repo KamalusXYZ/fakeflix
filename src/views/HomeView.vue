@@ -1,20 +1,42 @@
 <template>
   <div class="home">
-    <h2>FakeFlix</h2>
+    <h2>FAKEFLIX</h2>
     <br />
     <!-- <search-result-cmp msg="Welcome to Your Vue.js App" /> -->
     <!-- <caroussel-cmp />
     <bandeau-cmp /> -->
 
-    <input placeholder="Entrez le nom d'un film" v-model="search" type="text" />
-    <input v-on:click="SearchMovie" type="submit" value="Rechercher un film" />
+    <input
+      size="30"
+      v-on:keydown.enter="SearchMovie"
+      placeholder="Entrez le nom d'un film"
+      v-model="search"
+      type="text"
+    />
+    <input
+      class="btn btn-primary"
+      v-on:click="SearchMovie"
+      type="submit"
+      value="Rechercher un film"
+    />
 
     <div class="resultat">
       <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
-        <a href="">{{ movie.title }}</a>
-        <a href=""
-          ><img :src="posterUrl(movie.poster_path)" alt="movie.title"
-        /></a>
+        <div class="titre">
+          <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
+        </div>
+        <a :href="MovieUrl(movie.id)"
+          ><img
+            v-if="movie.poster_path"
+            :src="posterUrl(movie.poster_path)"
+            alt="movie.title"
+          />
+          <img
+            v-else
+            src="https://webboy.fr/wp-content/uploads/2022/03/image-non-disponible.png"
+            alt="movie.title"
+          />
+        </a>
       </div>
     </div>
   </div>
@@ -44,7 +66,7 @@ export default {
   methods: {
     SearchMovie: function () {
       fetch(
-        "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=1&query=" +
+        "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=8&query=" +
           this.search
       )
         .then((response) => response.json())
@@ -59,6 +81,10 @@ export default {
 
     posterUrl: function (posterPath) {
       return `https://image.tmdb.org/t/p/original${posterPath}`;
+    },
+
+    MovieUrl: function (moviePath) {
+      return `film/${moviePath}`;
     },
   },
 };
@@ -79,7 +105,7 @@ h2 {
   width: 270px;
   padding: 5px 5px 30px 5px;
   width: 260px;
-  font-size: 20px;
+
   font-weight: bold;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -100,9 +126,19 @@ img {
   margin: 0 auto;
   text-align: center;
 
-  background-color: black;
+  background-color: #0d0d0d;
   color: white;
 
   border-radius: 3px;
+}
+.titre {
+  height: 45px;
+  word-spacing: -1px;
+  line-height: 16px;
+  font-size: 18px;
+}
+
+.btn {
+  padding-left: 10px;
 }
 </style>

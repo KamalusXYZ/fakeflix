@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import FavoriteView from '@/views/FavoriteView'
 import WatchList from '@/views/WatchList'
+import MoviePage from '@/views/MoviePage'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [{
     path: '/a-voir',
     name: 'watchlist',
     component: WatchList
+  },
+  {
+    path: '/film/:id',
+    name: 'movie',
+    component: MoviePage
   },
 
 
