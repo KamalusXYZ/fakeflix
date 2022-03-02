@@ -14,6 +14,9 @@
 
     <div class="titre">
       <h1>{{ movieFocused.title }}</h1>
+      <div class="video">
+
+      </div>
     </div>
     <div class="conteneur d-flex align-items-center flex-wrap">
       <div class="affiche">
@@ -46,8 +49,11 @@
 </template>
 
 <script>
+import formaters from "@/mixins/formaters";
+
 export default {
   name: "MoviePage",
+  mixins: [formaters],
 
   data() {
     return {
@@ -72,9 +78,6 @@ export default {
         .catch((e) => {
           console.error("ERREUR", e);
         });
-    },
-    posterUrl: function (posterPath) {
-      return `https://image.tmdb.org/t/p/original${posterPath}`;
     },
   },
 };
@@ -101,7 +104,7 @@ export default {
   padding: 15px;
   text-align: left;
 }
-.menu {
+nav {
   padding: 15px;
 }
 </style>

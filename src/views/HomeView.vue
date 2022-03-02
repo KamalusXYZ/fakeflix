@@ -30,7 +30,7 @@
     </div>
 
     <div class="resultat">
-      <div class="thumbnailmovie" v-for="movie of movies" :key="movie">
+      <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
         <div class="titre">
           <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
         </div>
@@ -52,14 +52,12 @@
 </template>
 
 <script>
-// @ is an alias to /src
-//import SearchResultCmp from "@/components/SearchResultCmp.vue";
-// import CarousselCmp from "@/components/CarousselCmp.vue";
-// import BandeauCmp from "@/components/BandeauCmp.vue";
+import formaters from "@/mixins/formaters";
 
 export default {
   name: "HomeView",
   components: {},
+  mixins: [formaters],
 
   data() {
     return {
@@ -82,10 +80,6 @@ export default {
         .catch((e) => {
           console.error("ERREUR", e);
         });
-    },
-
-    posterUrl: function (posterPath) {
-      return `https://image.tmdb.org/t/p/original${posterPath}`;
     },
 
     MovieUrl: function (moviePath) {
@@ -145,16 +139,15 @@ img {
 
 .btn {
   padding-left: 10px;
-  height: 50px;
+  height: 45px;
 }
 
 .input {
   width: 250px;
-  height: 50px;
-  margin-right: 25px;
-  border-radius: 5px;
+  height: 40px;
+  margin-right: 5px;
 }
-.menu {
+nav {
   padding: 15px;
 }
 </style>
