@@ -1,27 +1,36 @@
 <template>
   <div class="home">
-    <h2>FAKEFLIX</h2>
-    <br />
-    <!-- <search-result-cmp msg="Welcome to Your Vue.js App" /> -->
-    <!-- <caroussel-cmp />
-    <bandeau-cmp /> -->
-
-    <input
-      size="30"
-      v-on:keydown.enter="SearchMovie"
-      placeholder="Entrez le nom d'un film"
-      v-model="search"
-      type="text"
-    />
-    <input
-      class="btn btn-primary"
-      v-on:click="SearchMovie"
-      type="submit"
-      value="Rechercher un film"
-    />
+    <div class="menu d-flex align-items-center justify-content-around">
+      <nav>
+        <router-link to="/"
+          ><div class="btn btn-primary m-2 fs-5">Acceuil</div></router-link
+        >
+        <router-link to="/favoris"
+          ><div class="btn btn-primary m-2 fs-5">Favoris</div></router-link
+        >
+        <router-link to="/a-voir"
+          ><div class="btn btn-primary m-2 fs-5">Ma liste</div></router-link
+        >
+      </nav>
+      <div>
+        <input
+          class="input"
+          v-on:keydown.enter="SearchMovie"
+          placeholder="Entrez le nom d'un film"
+          v-model="search"
+          type="text"
+        />
+        <input
+          class="btn btn-primary"
+          v-on:click="SearchMovie"
+          type="submit"
+          value="Rechercher un film"
+        />
+      </div>
+    </div>
 
     <div class="resultat">
-      <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
+      <div class="thumbnailmovie" v-for="movie of movies" :key="movie">
         <div class="titre">
           <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
         </div>
@@ -50,11 +59,7 @@
 
 export default {
   name: "HomeView",
-  components: {
-    //SearchResultCmp,
-    // CarousselCmp,
-    // BandeauCmp,
-  },
+  components: {},
 
   data() {
     return {
@@ -66,7 +71,7 @@ export default {
   methods: {
     SearchMovie: function () {
       fetch(
-        "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=8&query=" +
+        "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=1&query=" +
           this.search
       )
         .then((response) => response.json())
@@ -140,5 +145,16 @@ img {
 
 .btn {
   padding-left: 10px;
+  height: 50px;
+}
+
+.input {
+  width: 250px;
+  height: 50px;
+  margin-right: 25px;
+  border-radius: 5px;
+}
+.menu {
+  padding: 15px;
 }
 </style>

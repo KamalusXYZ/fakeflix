@@ -1,12 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <h2>FAKEFLIX</h2>
 
-    <nav class="menu">
-      <router-link to="/">| Home </router-link>
-      <router-link to="/favoris">| Favoris </router-link>
-      <router-link to="/a-voir">| WatchList </router-link>
-    </nav>
+    <router-view />
   </div>
 </template>
 
