@@ -1,35 +1,8 @@
 <template>
   <div class="home">
-    <div class="menu d-flex align-items-center justify-content-around">
-      <nav>
-        <router-link to="/"
-          ><div class="btn btn-primary m-2 fs-5">Acceuil</div></router-link
-        >
-        <router-link to="/favoris"
-          ><div class="btn btn-primary m-2 fs-5">Favoris</div></router-link
-        >
-        <router-link to="/a-voir"
-          ><div class="btn btn-primary m-2 fs-5">Ma liste</div></router-link
-        >
-      </nav>
-      <div>
-        <input
-          class="input"
-          v-on:keydown.enter="SearchMovie"
-          placeholder="Entrez le nom d'un film"
-          v-model="search"
-          type="text"
-        />
-        <input
-          class="btn btn-primary"
-          v-on:click="SearchMovie"
-          type="submit"
-          value="Rechercher un film"
-        />
-      </div>
-    </div>
-
+    <NavBar></NavBar>
     <div class="resultat">
+      <p>Vos resultats pour la recherche: {{ query }}</p>
       <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
         <div class="titre">
           <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
@@ -52,12 +25,22 @@
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
 import formaters from "@/mixins/formaters";
 
 export default {
   name: "HomeView",
-  components: {},
+  components: {
+    NavBar,
+  },
   mixins: [formaters],
+
+  computed: {
+    query: function () {
+      //TODO essayer les mapState
+      return this.$store.state.query;
+    },
+  },
 
   data() {
     return {
@@ -68,18 +51,18 @@ export default {
 
   methods: {
     SearchMovie: function () {
-      fetch(
-        "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=1&query=" +
-          this.search
-      )
-        .then((response) => response.json())
-        .then((movies) => {
-          console.log(movies);
-          this.movies = movies.results;
-        })
-        .catch((e) => {
-          console.error("ERREUR", e);
-        });
+      // fetch(
+      //   "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=1&query=" +
+      //     this.search
+      // )
+      //   .then((response) => response.json())
+      //   .then((movies) => {
+      //     console.log(movies);
+      //     this.movies = movies.results;
+      //   })
+      //   .catch((e) => {
+      //     console.error("ERREUR", e);
+      //   });
     },
 
     MovieUrl: function (moviePath) {
