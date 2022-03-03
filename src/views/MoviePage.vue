@@ -29,7 +29,7 @@
         <img :src="posterUrl(movieFocused.poster_path)" />
       </div>
       <div class="infos">
-        <p>Date de sortie: {{ movieFocused.release_date }}</p>
+        <p>Date de sortie: {{ movieFocused.release_date }}.toLocaleDateString("fr")</p>
         <p>Synopsis: {{ movieFocused.overview }}</p>
         <p>Informations : 
           <ul>

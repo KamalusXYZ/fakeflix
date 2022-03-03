@@ -15,7 +15,7 @@
         >
       </nav>
 
-      <h3>Résultat pour la recherche: {{query}}</h3>
+      <h3>Résultat pour la recherche: <span class="mots">{{query}}</span></h3>
       <div>
         <input
           class="input"
@@ -63,3 +63,12 @@ export default {
   
 };
 </script>
+
+<style>
+.mots{
+
+  color: red;
+  font-size: 40px;
+  font-weight: bold;
+}
+</style>

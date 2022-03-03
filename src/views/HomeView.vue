@@ -59,7 +59,7 @@ export default {
 };
 </script>
 
-<style >
+<style>
 a {
   text-decoration: none;
   color: inherit;
@@ -84,6 +84,7 @@ img {
   max-width: 100%;
   vertical-align: middle;
   height: auto;
+  border-radius: 7px;
 }
 
 .resultat {

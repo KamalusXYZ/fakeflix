@@ -8,9 +8,23 @@
 
 
 <style >
+
+
+
+h2{
+
+font-size: 110px;
+text-decoration: none  !important;
+letter-spacing: -8px;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
 body {
   background-color: #0d0d0d;
 }
+
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -25,14 +39,6 @@ nav {
   padding: 30px;
 }
 
-nav a {
-  font-weight: bold;
-  color: inherit;
-}
-
-nav a.router-link-exact-active {
-  color: #d90b1c;
-}
 
 .menu {
   background: rgb(37, 37, 37);
