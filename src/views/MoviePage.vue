@@ -16,9 +16,14 @@
       <h1>{{ movieFocused.title }}</h1>
       <div class="video">
 
+        <iframe width="560" height="315" :src="https://www.youtube.com/embed/xxxxxxxxxxxxxxxxxxxxx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
       </div>
     </div>
     <div class="conteneur d-flex align-items-center flex-wrap">
+      <div class="video">
+
+      </div>
       <div class="affiche">
         <img :src="posterUrl(movieFocused.poster_path)" />
       </div>
@@ -40,11 +45,18 @@
             <button class="btn btn-success">Ajouter aux favoris</button>
             <button class="btn btn-success">Ajouter à ma liste</button>
 
+            
+
+
+
 
           </div>
+          
         
       </div>
+      
     </div>
+    
   </div>
 </template>
 
@@ -58,14 +70,38 @@ export default {
   data() {
     return {
       movieFocused: [],
+      trailer: ""
     };
   },
 
   created: function () {
     this.displayMoviePage();
+    this.displayTrailer()
   },
 
   methods: {
+
+    displayTrailer: function () {
+
+      fetch(
+        `https://api.themoviedb.org/3/movie/${this.$route.params.id}/videos?api_key=16339e3d2f16c3253b083ac43d403e38&language=en-US`
+      )
+        .then((response) => response.json())
+        .then((trailer) => {
+          console.log("test trailer" + trailer);
+       
+         this.trailer = trailer.results[0].key
+
+        })
+        .catch((e) => {
+          console.error("ERREUR", e);
+        });
+
+
+
+
+    },
+
     displayMoviePage: function () {
       fetch(
         `https://api.themoviedb.org/3/movie/${this.$route.params.id}?api_key=16339e3d2f16c3253b083ac43d403e38`
@@ -107,5 +143,7 @@ export default {
 nav {
   padding: 15px;
 }
+
+
 </style>
 

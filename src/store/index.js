@@ -6,17 +6,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 
 
-
-
-
   state: {
-    query: ""
+    query: "",
+    movies:[]
   },
-
-
-
-
-
 
 
   getters: {},
@@ -25,6 +18,10 @@ export default new Vuex.Store({
   mutations: {
     setQuery: function (state, query) {
       state.query = query
+    },
+
+    setMovies: function (state, movies) {
+      state.movies = movies
     }
   },
 
@@ -33,10 +30,25 @@ export default new Vuex.Store({
 
   actions: {
 
+    
 
-    searchMovie() {
 
 
+    searchMovies: function (context, query)  {
+
+      context.commit("setQuery", query);
+        fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=1&query=${context.state.query}`
+        )
+          .then((response) => response.json())
+          .then((movies) => {
+            console.log(movies);
+         
+            context.commit("setMovies", movies.results)
+          })
+          .catch((e) => {
+            console.error("ERREUR", e);
+          });
 
 
     }

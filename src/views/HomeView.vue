@@ -37,33 +37,20 @@ export default {
 
   computed: {
     query: function () {
-      //TODO essayer les mapState
+      
       return this.$store.state.query;
     },
+
+    movies: function () {
+
+      return this.$store.state.movies
+    }
   },
 
-  data() {
-    return {
-      search: "",
-      movies: [],
-    };
-  },
+
 
   methods: {
-    SearchMovie: function () {
-      // fetch(
-      //   "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=1&query=" +
-      //     this.search
-      // )
-      //   .then((response) => response.json())
-      //   .then((movies) => {
-      //     console.log(movies);
-      //     this.movies = movies.results;
-      //   })
-      //   .catch((e) => {
-      //     console.error("ERREUR", e);
-      //   });
-    },
+   
 
     MovieUrl: function (moviePath) {
       return `film/${moviePath}`;

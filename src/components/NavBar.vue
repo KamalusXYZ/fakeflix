@@ -14,46 +14,52 @@
           </div></router-link
         >
       </nav>
+
+      <h3>test: {{query}}</h3>
       <div>
         <input
           class="input"
-          v-on:keydown.enter="SearchMovie"
+          v-on:keydown.enter="$store.dispatch('searchMovies', $event.target.value)"
+          
           placeholder="Entrez le nom d'un film"
           type="text"
           id="query"
         />
-        <input
-          class="btn btn-primary"
-          v-on:click="SearchMovie"
-          type="submit"
-          value="Rechercher un film"
-        />
+        
+
+        <button class="btn btn-primary"
+          
+          v-on:click="launchSearch"
+          type="button"
+          value="Rechercher un film" >Rechercher un film</button>
+                 
       </div>
     </div>
   </div>
 </template>
 <script>
+
 export default {
   name: "NavBar",
-  methods: {
-    SearchMovie: function () {
-      this.$store.commit("setQuery", document.getElementById("query").value);
 
-      //action : dispatch
 
-      //   fetch(
-      //     "https://api.themoviedb.org/3/search/movie?api_key=16339e3d2f16c3253b083ac43d403e38&page=1&query=" +
-      //       this.search
-      //   )
-      //     .then((response) => response.json())
-      //     .then((movies) => {
-      //       console.log(movies);
-      //       this.movies = movies.results;
-      //     })
-      //     .catch((e) => {
-      //       console.error("ERREUR", e);
-      //     });
-    },
+  computed: {
+    query: function () {
+      
+      return this.$store.state.query;
+
+    }
+
+
   },
+
+  methods:{
+
+    launchSearch:  function () {
+      let query = document.getElementById('query').value
+      this.$store.dispatch("searchMovies", query )
+    }
+  }
+  
 };
 </script>
