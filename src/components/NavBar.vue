@@ -15,7 +15,7 @@
         >
       </nav>
 
-      <h3>test: {{query}}</h3>
+      <h3>Résultat pour la recherche: {{query}}</h3>
       <div>
         <input
           class="input"

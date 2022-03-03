@@ -2,7 +2,7 @@
   <div class="home">
     <NavBar></NavBar>
     <div class="resultat">
-      <p>Vos resultats pour la recherche: {{ query }}</p>
+      
       <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
         <div class="titre">
           <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
@@ -101,10 +101,10 @@ img {
   border-radius: 3px;
 }
 .titre {
-  height: 45px;
+  min-height: 55px;
   word-spacing: -1px;
-  line-height: 16px;
-  font-size: 18px;
+  line-height: 23px;
+  font-size: 28px;
 }
 
 .btn {

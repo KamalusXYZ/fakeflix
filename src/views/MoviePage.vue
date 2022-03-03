@@ -11,14 +11,15 @@
         ><div class="btn btn-primary m-2 fs-5">Ma liste</div></router-link
       >
     </nav>
+    <div class="video">
+
+        <iframe v-if="trailer != null" width=78% height="400" :src="videoUrl(trailer)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
+
+      </div>
 
     <div class="titre">
       <h1>{{ movieFocused.title }}</h1>
-      <div class="video">
-
-        <iframe width="560" height="315" :src="https://www.youtube.com/embed/xxxxxxxxxxxxxxxxxxxxx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-      </div>
+      
     </div>
     <div class="conteneur d-flex align-items-center flex-wrap">
       <div class="video">
@@ -88,7 +89,7 @@ export default {
       )
         .then((response) => response.json())
         .then((trailer) => {
-          console.log("test trailer" + trailer);
+          
        
          this.trailer = trailer.results[0].key
 
@@ -115,6 +116,14 @@ export default {
           console.error("ERREUR", e);
         });
     },
+
+    videoUrl: function (url) {
+
+return `https://www.youtube.com/embed/${url}`;
+      
+
+
+    }
   },
 };
 </script>
@@ -143,7 +152,9 @@ export default {
 nav {
   padding: 15px;
 }
-
+.video{
+  margin-top: 10px;
+}
 
 </style>
 
