@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h2><a href="/">FAKEFLIX</a></h2>
+    
 
     <router-view />
   </div>

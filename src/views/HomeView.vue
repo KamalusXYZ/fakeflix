@@ -1,57 +1,57 @@
 <template>
-  <div class="home">
+  <div>
     <NavBar></NavBar>
-    <div class="resultat">
-      
-      <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
-        <div class="titre">
-          <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
+   <p>Résultat pour la recherche: <span class="mots">{{query}}</span></p>
+    <div class="home d-flex justify-content-center">
+      <div class="resultat">
+        <div v-if="!movies" class="vide"> Recherchez un film parmis des milliers de titres.  </div>
+        <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
+          <div class="titre">
+            <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
+          </div>
+          <a :href="MovieUrl(movie.id)"
+            ><img
+              v-if="movie.poster_path"
+              :src="posterUrl(movie.poster_path)"
+              alt="movie.title"
+            />
+            <img
+              v-else
+              src="https://webboy.fr/wp-content/uploads/2022/03/image-non-disponible.png"
+              alt="movie.title"
+            />
+          </a>
         </div>
-        <a :href="MovieUrl(movie.id)"
-          ><img
-            v-if="movie.poster_path"
-            :src="posterUrl(movie.poster_path)"
-            alt="movie.title"
-          />
-          <img
-            v-else
-            src="https://webboy.fr/wp-content/uploads/2022/03/image-non-disponible.png"
-            alt="movie.title"
-          />
-        </a>
       </div>
+      <aside class="aside"><DiscoverSlide></DiscoverSlide></aside>
     </div>
   </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import DiscoverSlide from "@/components/DiscoverSlide.vue";
 import formaters from "@/mixins/formaters";
 
 export default {
   name: "HomeView",
   components: {
     NavBar,
+    DiscoverSlide,
   },
   mixins: [formaters],
 
   computed: {
     query: function () {
-      
       return this.$store.state.query;
     },
 
     movies: function () {
-
-      return this.$store.state.movies
-    }
+      return this.$store.state.movies;
+    },
   },
 
-
-
   methods: {
-   
-
     MovieUrl: function (moviePath) {
       return `film/${moviePath}`;
     },
@@ -60,6 +60,17 @@ export default {
 </script>
 
 <style>
+.aside {
+  width: 30%;
+  background-color: #0d0d0d;
+  display: block;
+  padding: 10px;
+  
+}
+.home {
+   width: 90%;
+   margin: 0 auto;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -83,7 +94,7 @@ h2 {
 img {
   max-width: 100%;
   vertical-align: middle;
-  height: auto;
+ 
   border-radius: 7px;
 }
 
@@ -91,9 +102,9 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 1200px;
+  
+  width: 90%;
 
-  margin: 0 auto;
   text-align: center;
 
   background-color: #0d0d0d;
@@ -120,5 +131,14 @@ img {
 }
 nav {
   padding: 15px;
+}
+
+.vide{
+
+  font-size: 70px;
+  color: rgb(90, 90, 90);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 25px;
+  
 }
 </style>

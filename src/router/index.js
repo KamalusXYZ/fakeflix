@@ -5,6 +5,7 @@ import FavoriteView from '@/views/FavoriteView'
 import WatchList from '@/views/WatchList'
 import MoviePage from '@/views/MoviePage'
 
+
 Vue.use(VueRouter)
 
 const routes = [{
@@ -27,7 +28,6 @@ const routes = [{
     name: 'movie',
     component: MoviePage
   },
-
 
 
 ]

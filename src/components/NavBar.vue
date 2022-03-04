@@ -3,6 +3,7 @@
     <div class="menu d-flex align-items-center justify-content-around">
       <nav>
         <router-link to="/"
+
           ><div class="btn btn-primary m-2 fs-5">Acceuil</div></router-link
         >
         <router-link to="/favoris"
@@ -15,7 +16,7 @@
         >
       </nav>
 
-      <h3>Résultat pour la recherche: <span class="mots">{{query}}</span></h3>
+      
       <div>
         <input
           class="input"

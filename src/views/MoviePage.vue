@@ -1,16 +1,9 @@
 <template>
   <div class="home">
-    <nav class="menu">
-      <router-link to="/"
-        ><div class="btn btn-primary m-2 fs-5">Acceuil</div></router-link
-      >
-      <router-link to="/favoris"
-        ><div class="btn btn-primary m-2 fs-5">Favoris</div></router-link
-      >
-      <router-link to="/a-voir"
-        ><div class="btn btn-primary m-2 fs-5">Ma liste</div></router-link
-      >
-    </nav>
+    
+    
+    <NavBar></NavBar>
+    
     <div class="video">
 
         <iframe v-if="trailer != null" width=78% height="400" :src="videoUrl(trailer)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
@@ -29,7 +22,7 @@
         <img :src="posterUrl(movieFocused.poster_path)" />
       </div>
       <div class="infos">
-        <p>Date de sortie: {{ movieFocused.release_date }}.toLocaleDateString("fr")</p>
+        <p>Date de sortie: {{ movieFocused.release_date | formatDateFr }}</p>
         <p>Synopsis: {{ movieFocused.overview }}</p>
         <p>Informations : 
           <ul>
@@ -53,10 +46,31 @@
 
           </div>
           
-        
+          
       </div>
       
     </div>
+    <span class="important">Vous pourriez aimer:</span>
+    <div class="reco d-flex">
+      
+         <div class="sugg">
+           <a href="reco1.id">{{reco1.title}}</a> 
+           <a :href="reco1.id"><img :src="posterUrl(reco1.poster_path)" :alt="reco.title"></a> 
+
+          </div>
+          <div class="sugg">
+           <a href="reco2.id">{{reco2.title}}</a> 
+           <a :href="reco2.id"><img :src="posterUrl(reco2.poster_path)" :alt="reco.title"></a> 
+
+          </div>
+          <div class="sugg">
+           <a href="reco3.id">{{reco3.title}}</a> 
+           <a :href="reco3.id"><img :src="posterUrl(reco3.poster_path)" :alt="reco.title"></a> 
+
+          </div>
+
+
+          </div>
     
   </div>
 </template>
@@ -71,36 +85,62 @@ export default {
   data() {
     return {
       movieFocused: [],
-      trailer: ""
+      trailer: "",
+      reco: [],
+      reco1: [],
+      reco2: [],
+      reco3: [],
     };
   },
 
   created: function () {
     this.displayMoviePage();
-    this.displayTrailer()
+    this.displayTrailer();
+    this.displayReco();
+  },
+
+  filters: {
+    formatDateFr: function (value) {
+      const event = new Date(value);
+      const options = { year: "numeric", month: "long", day: "numeric" };
+
+      return event.toLocaleDateString("fr-FR", options);
+    },
   },
 
   methods: {
+    MovieUrl: function (moviePath) {
+      return `${moviePath}`;
+    },
+    displayReco: function () {
+      fetch(
+        `https://api.themoviedb.org/3/movie/${this.$route.params.id}/recommendations?api_key=16339e3d2f16c3253b083ac43d403e38`
+      )
+        .then((response) => response.json())
+        .then((reco) => {
+          this.reco = reco.results;
+          this.reco1 = this.reco[0];
+          this.reco2 = this.reco[1];
+          this.reco3 = this.reco[2];
+
+          console.log(this.reco);
+        })
+        .catch((e) => {
+          console.error("ERREUR", e);
+        });
+    },
 
     displayTrailer: function () {
-
       fetch(
         `https://api.themoviedb.org/3/movie/${this.$route.params.id}/videos?api_key=16339e3d2f16c3253b083ac43d403e38&language=en-US`
       )
         .then((response) => response.json())
         .then((trailer) => {
-          
-       
-         this.trailer = trailer.results[0].key
-
+          this.trailer = trailer.results[0].key;
         })
         .catch((e) => {
           console.error("ERREUR", e);
         });
-
-
-
-
     },
 
     displayMoviePage: function () {
@@ -118,12 +158,8 @@ export default {
     },
 
     videoUrl: function (url) {
-
-return `https://www.youtube.com/embed/${url}`;
-      
-
-
-    }
+      return `https://www.youtube.com/embed/${url}`;
+    },
   },
 };
 </script>
@@ -152,9 +188,27 @@ return `https://www.youtube.com/embed/${url}`;
 nav {
   padding: 15px;
 }
-.video{
+.video {
   margin-top: 10px;
 }
+.reco{
 
+  width: 100%;
+  display: flex;
+  margin: 0 auto;
+  
+  
+}
+.important{
+
+  font-weight: bold;
+  color: #ccc;
+  font-size: 35px;
+  
+}
+.sugg{
+  margin: 5px;
+  width: 30%;
+}
 </style>
 
