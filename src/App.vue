@@ -1,16 +1,11 @@
 <template>
   <div id="app">
     <h2><a href="/">FAKEFLIX</a></h2>
-    
-
-    <router-view />
+        <router-view />
   </div>
 </template>
 
-
 <style >
-
-
 
 h2{
 
@@ -23,9 +18,8 @@ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida San
 
 body {
   background-color: #0d0d0d;
+
 }
-
-
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -39,7 +33,6 @@ body {
 nav {
   padding: 30px;
 }
-
 
 .menu {
   background: rgb(37, 37, 37);

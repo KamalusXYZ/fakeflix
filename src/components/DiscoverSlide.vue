@@ -1,9 +1,8 @@
 <template>
   <div class="box">
+    <h3>A la une</h3>
     <div>
       <div>
-        <!-- cette tache doit etre automatisée dans la method ou dans un v for, mais dans le temps impratie impossible pour moi de trouver la solution, alors j'ai fait e sorte que ca marche , en attandant d'ameliorer, j'en ai fait que 10 au lieu des 20 du tableau venant de l api.
-        la console affiche des erreurs a resoudre. -->
         <hooper
           :wheelControl="false"
           :transition="1000"
@@ -73,9 +72,13 @@ import "hooper/dist/hooper.css";
 
 
 <style >
+
+h3{
+
+  font-size: 50px;
+}
 .hooper-list {
   height: auto;
-  width: 100%;
 }
 .box {
   margin: 50px auto;

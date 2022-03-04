@@ -1,0 +1,11 @@
+#searchresult div{
+
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+#searchresult div div{
+
+    max-width: 25%;
+}

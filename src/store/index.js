@@ -5,15 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 
-
   state: {
     query: "",
     movies:[]
   },
 
-
   getters: {},
-
 
   mutations: {
     setQuery: function (state, query) {
@@ -25,17 +22,8 @@ export default new Vuex.Store({
     }
   },
 
-
-
-
   actions: {
-
   
-
-    
-
-
-
     searchMovies: function (context, query)  {
 
       context.commit("setQuery", query);
@@ -51,10 +39,6 @@ export default new Vuex.Store({
           .catch((e) => {
             console.error("ERREUR", e);
           });
-
-
     }
-
-
   }
 })

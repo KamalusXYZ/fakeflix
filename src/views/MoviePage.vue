@@ -1,9 +1,6 @@
 <template>
-  <div class="home">
-    
-    
-    <NavBar></NavBar>
-    
+  <div>
+
     <div class="video">
 
         <iframe v-if="trailer != null" width=78% height="400" :src="videoUrl(trailer)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
@@ -38,38 +35,28 @@
           <div class="box d-flex align-items-center justify-content-around pt-2">
             <button class="btn btn-success">Ajouter aux favoris</button>
             <button class="btn btn-success">Ajouter à ma liste</button>
-
             
-
-
-
-
           </div>
           
-          
-      </div>
+                </div>
       
     </div>
     <span class="important">Vous pourriez aimer:</span>
     <div class="reco d-flex">
       
-         <div class="sugg">
+         <div v-if="reco1.id" class="sugg">
            <a href="reco1.id">{{reco1.title}}</a> 
            <a :href="reco1.id"><img :src="posterUrl(reco1.poster_path)" :alt="reco.title"></a> 
-
           </div>
-          <div class="sugg">
+          <div v-if="reco2.id" class="sugg">
            <a href="reco2.id">{{reco2.title}}</a> 
            <a :href="reco2.id"><img :src="posterUrl(reco2.poster_path)" :alt="reco.title"></a> 
 
           </div>
-          <div class="sugg">
+          <div v-if="reco3.id" class="sugg">
            <a href="reco3.id">{{reco3.title}}</a> 
            <a :href="reco3.id"><img :src="posterUrl(reco3.poster_path)" :alt="reco.title"></a> 
-
           </div>
-
-
           </div>
     
   </div>
@@ -77,6 +64,7 @@
 
 <script>
 import formaters from "@/mixins/formaters";
+
 
 export default {
   name: "MoviePage",
@@ -103,12 +91,18 @@ export default {
     formatDateFr: function (value) {
       const event = new Date(value);
       const options = { year: "numeric", month: "long", day: "numeric" };
-
       return event.toLocaleDateString("fr-FR", options);
     },
   },
+  
+
+  
 
   methods: {
+
+
+
+    
     MovieUrl: function (moviePath) {
       return `${moviePath}`;
     },
@@ -122,8 +116,6 @@ export default {
           this.reco1 = this.reco[0];
           this.reco2 = this.reco[1];
           this.reco3 = this.reco[2];
-
-          console.log(this.reco);
         })
         .catch((e) => {
           console.error("ERREUR", e);
@@ -174,8 +166,8 @@ export default {
 .titre {
   margin: 0 auto;
   width: 80%;
-
   padding: 20px;
+
 }
 .affiche {
   width: 30%;
@@ -191,22 +183,17 @@ nav {
 .video {
   margin-top: 10px;
 }
-.reco{
-
+.reco {
   width: 100%;
   display: flex;
   margin: 0 auto;
-  
-  
 }
-.important{
-
+.important {
   font-weight: bold;
   color: #ccc;
   font-size: 35px;
-  
 }
-.sugg{
+.sugg {
   margin: 5px;
   width: 30%;
 }
