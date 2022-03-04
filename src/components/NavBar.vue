@@ -13,7 +13,14 @@
             Ma liste de films
           </div></router-link
         >
+
       </nav>
+<router-link to="/categories"
+          ><div class="btn btn-info m-2 fs-5">
+            Catégories
+          </div></router-link
+        >
+    
 
       <div>
         <input

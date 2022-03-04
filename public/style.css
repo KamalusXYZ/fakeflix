@@ -1,11 +1,22 @@
-#searchresult div{
+#searchresult div {
 
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 
 }
 
-#searchresult div div{
+#searchresult div div {
 
-    max-width: 25%;
+    text-align: center !important;
+}
+
+#searchresult{
+
+   
+}
+
+aside{
+
+    
 }

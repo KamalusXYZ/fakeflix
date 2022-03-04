@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import FavoriteView from '@/views/FavoriteView'
 import WatchList from '@/views/WatchList'
 import MoviePage from '@/views/MoviePage'
+import CategorieView from '@/views/CategorieView'
 
 
 Vue.use(VueRouter)
@@ -28,6 +29,12 @@ const routes = [{
     name: 'movie',
     component: MoviePage
   },
+  {
+    path: '/categories',
+    name: 'categorie',
+    component: CategorieView
+  },
+
 
 
 ]

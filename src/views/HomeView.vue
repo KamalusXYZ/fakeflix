@@ -6,16 +6,19 @@
       Résultat pour la recherche: <span class="mots"> {{ query }}</span>
     </p>
 
+
+<div class="conteneur d-flex ">
+
+
+
     <div class="home">
-      
-        <div v-if="!movies" class="vide">
-          Recherchez un film parmis des milliers de titres.
-        </div>
-        <div id="searchresult" class="resultat">
+      <div v-if="!movies" class="vide">
+        Recherchez un film parmis des milliers de titres.
+      </div>
+      <div id="searchresult" class="resultat">
         <transition-group name="bounce" tag="div">
           <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
-
-            <div class="titre">
+            <div class="titre justify-content-center">
               <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
             </div>
 
@@ -32,14 +35,17 @@
               />
             </a>
           </div>
-          
         </transition-group>
-        </div>
       </div>
-
-      <aside class="aside"><DiscoverSlide></DiscoverSlide></aside>
     </div>
-  
+    
+ <aside class="aside"><DiscoverSlide></DiscoverSlide></aside>
+ 
+</div>
+
+
+   
+  </div>
 </template>
 
 <script>
@@ -121,11 +127,12 @@ img {
   color: white;
   border-radius: 3px;
 }
-.titre {
+.titre a {
   min-height: 55px;
   word-spacing: -1px;
   line-height: 23px;
   font-size: 28px;
+  text-align: center;
 }
 
 .btn {
@@ -163,7 +170,7 @@ nav {
     transform: scale(0);
   }
   50% {
-    transform: scale(1.5);
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
