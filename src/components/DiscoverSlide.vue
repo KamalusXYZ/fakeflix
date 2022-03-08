@@ -75,7 +75,8 @@ import "hooper/dist/hooper.css";
 h3 {
   font-size: 50px;
 }
-.hooper-list {
-  height: auto;
+.hooper {
+  width: 220px;
+  min-height: 350px;
 }
 </style>
