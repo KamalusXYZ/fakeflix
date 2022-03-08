@@ -5,6 +5,7 @@ import FavoriteView from '@/views/FavoriteView'
 import WatchList from '@/views/WatchList'
 import MoviePage from '@/views/MoviePage'
 import CategorieView from '@/views/CategorieView'
+import LoginPage from '@/views/LoginPage'
 
 
 Vue.use(VueRouter)
@@ -33,6 +34,11 @@ const routes = [{
     path: '/categories',
     name: 'categorie',
     component: CategorieView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginPage
   },
 
 

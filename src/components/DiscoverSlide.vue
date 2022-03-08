@@ -72,15 +72,10 @@ import "hooper/dist/hooper.css";
 
 
 <style >
-
-h3{
-
+h3 {
   font-size: 50px;
 }
 .hooper-list {
   height: auto;
-}
-.box {
-  margin: 50px auto;
 }
 </style>

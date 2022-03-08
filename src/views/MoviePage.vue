@@ -65,7 +65,6 @@
 <script>
 import formaters from "@/mixins/formaters";
 
-
 export default {
   name: "MoviePage",
   mixins: [formaters],
@@ -94,15 +93,8 @@ export default {
       return event.toLocaleDateString("fr-FR", options);
     },
   },
-  
-
-  
 
   methods: {
-
-
-
-    
     MovieUrl: function (moviePath) {
       return `${moviePath}`;
     },
@@ -167,7 +159,6 @@ export default {
   margin: 0 auto;
   width: 80%;
   padding: 20px;
-
 }
 .affiche {
   width: 30%;
@@ -184,7 +175,7 @@ nav {
   margin-top: 10px;
 }
 .reco {
-  width: 100%;
+  width: 50%;
   display: flex;
   margin: 0 auto;
 }
