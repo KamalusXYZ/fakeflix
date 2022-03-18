@@ -1,5 +1,6 @@
 <template>
   <div>
+ 
 
     <div class="video">
 
@@ -45,23 +46,27 @@
     <div class="reco d-flex">
       
          <div v-if="reco1.id" class="sugg">
-           <a href="reco1.id">{{reco1.title}}</a> 
-           <a :href="reco1.id"><img :src="posterUrl(reco1.poster_path)" :alt="reco.title"></a> 
+           <router-link :to="reco1.id">{{reco1.title}}</router-link>
+           
+
+           <router-link :to="reco1.id"><img :src="posterUrl(reco1.poster_path)" :alt="reco.title"></router-link> 
           </div>
           <div v-if="reco2.id" class="sugg">
-           <a href="reco2.id">{{reco2.title}}</a> 
-           <a :href="reco2.id"><img :src="posterUrl(reco2.poster_path)" :alt="reco.title"></a> 
+           <router-link :to="reco2.id">{{reco2.title}}</router-link>
+
+           <router-link :to="reco2.id"><img :src="posterUrl(reco2.poster_path)" :alt="reco.title"></router-link> 
 
           </div>
           <div v-if="reco3.id" class="sugg">
-           <a href="reco3.id">{{reco3.title}}</a> 
-           <a :href="reco3.id"><img :src="posterUrl(reco3.poster_path)" :alt="reco.title"></a> 
+           <router-link :to="reco3.id">{{reco3.title}}</router-link>
+
+           <router-link :to="reco3.id"><img :src="posterUrl(reco3.poster_path)" :alt="reco.title"></router-link> 
           </div>
           </div>
     
   </div>
 </template>
-
+console.log(reco1.id)
 <script>
 import formaters from "@/mixins/formaters";
 

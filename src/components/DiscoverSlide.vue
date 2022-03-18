@@ -10,9 +10,9 @@
           :autoPlay="true"
         >
           <slide v-for="movie of discover" v-bind:key="movie.id">
-            <a :href="MovieUrl(movie.id)"
+            <router-link :to="MovieUrl(movie.id)"
               ><img :src="posterUrl(movie.poster_path)" :alt="movie.title"
-            /></a>
+            /></router-link>
           </slide>
         </hooper>
       </div>

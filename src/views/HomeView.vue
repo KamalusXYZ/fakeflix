@@ -6,45 +6,39 @@
       Résultat pour la recherche: <span class="mots"> {{ query }}</span>
     </p>
 
+    <div class="conteneur d-flex">
+      <div class="home">
+        <div v-if="!movies" class="vide">
+          Recherchez un film parmis des milliers de titres.
+        </div>
+        <div id="searchresult" class="resultat">
+          <transition-group name="bounce" tag="div">
+            <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
+              <div class="titre justify-content-center">
+                <router-link :to="MovieUrl(movie.id)">{{
+                  movie.title
+                }}</router-link>
+              </div>
 
-<div class="conteneur d-flex ">
-
-
-
-    <div class="home">
-      <div v-if="!movies" class="vide">
-        Recherchez un film parmis des milliers de titres.
-      </div>
-      <div id="searchresult" class="resultat">
-        <transition-group name="bounce" tag="div">
-          <div class="thumbnailmovie" v-for="movie of movies" :key="movie.id">
-            <div class="titre justify-content-center">
-              <a :href="MovieUrl(movie.id)">{{ movie.title }}</a>
+              <router-link :to="MovieUrl(movie.id)"
+                ><img
+                  v-if="movie.poster_path"
+                  :src="posterUrl(movie.poster_path)"
+                  alt="movie.title"
+                />
+                <img
+                  v-else
+                  src="https://webboy.fr/wp-content/uploads/2022/03/image-non-disponible.png"
+                  alt="movie.title"
+                />
+              </router-link>
             </div>
-
-            <a :href="MovieUrl(movie.id)"
-              ><img
-                v-if="movie.poster_path"
-                :src="posterUrl(movie.poster_path)"
-                alt="movie.title"
-              />
-              <img
-                v-else
-                src="https://webboy.fr/wp-content/uploads/2022/03/image-non-disponible.png"
-                alt="movie.title"
-              />
-            </a>
-          </div>
-        </transition-group>
+          </transition-group>
+        </div>
       </div>
+
+      <aside class="aside"><DiscoverSlide></DiscoverSlide></aside>
     </div>
-    
- <aside class="aside"><DiscoverSlide></DiscoverSlide></aside>
- 
-</div>
-
-
-   
   </div>
 </template>
 

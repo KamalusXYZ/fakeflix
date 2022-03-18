@@ -1,24 +1,21 @@
 <template>
   <div id="app">
-    <h2><a href="/">FAKEFLIX</a></h2>
-        <router-view />
+    <router-link to="/"> <h2>FAKEFLIX</h2> </router-link>
+    <router-view />
   </div>
 </template>
 
 <style >
-
-h2{
-
-font-size: 110px;
-text-decoration: none  !important;
-letter-spacing: -8px;
-font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+h2 {
+  font-size: 110px;
+  text-decoration: none !important;
+  letter-spacing: -8px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 body {
   background-color: #0d0d0d;
-
 }
 
 #app {
